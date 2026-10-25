@@ -1,0 +1,326 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f7f7f5;
+    color: #202020;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 26px 7%;
+    border-bottom: 1px solid #e5e5e2;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #777;
+}
+
+main {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 100px 28px 30px;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #777;
+    margin-bottom: 22px;
+}
+
+h1 {
+    font-size: clamp(42px, 8vw, 76px);
+    letter-spacing: -3px;
+    line-height: 1.08;
+    font-weight: 500;
+    max-width: 650px;
+}
+
+.intro {
+    max-width: 420px;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-top: 24px;
+}
+
+button {
+    margin-top: 32px;
+    background: #202020;
+    color: white;
+    border: 1px solid #202020;
+    padding: 14px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: transparent;
+    color: #202020;
+}
+
+.note {
+    max-width: 580px;
+    margin-top: 80px;
+    padding: 30px 0;
+    border-top: 1px solid #dededb;
+    animation: appear 0.5s ease;
+}
+
+h2 {
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: -0.8px;
+    margin-bottom: 24px;
+}
+
+.note p:not(.eyebrow) {
+    font-size: 14px;
+    line-height: 2;
+    color: #555;
+    margin-bottom: 18px;
+}
+
+.note .signature {
+    color: #202020 !important;
+    margin-top: 28px;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid #e5e5e2;
+    margin-top: 100px;
+    padding: 22px 0;
+    color: #888;
+    font-size: 9px;
+    letter-spacing: 1.3px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-top: 75px;
+    }
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    nav {
+        font-size: 8px;
+    }
+
+    footer {
+        font-size: 8px;
+    }
+}
+
+.gallery {
+    margin-top: 100px;
+}
+
+.gallery h2 {
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+}
+
+.gallery-intro {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 18px;
+    align-items: start;
+}
+
+.polaroid {
+    background: #fff;
+    padding: 9px 9px 18px;
+    box-shadow: 0 5px 18px #0000000c;
+    border: 1px solid #eae8e4;
+    transition: transform 0.25s ease;
+}
+
+.polaroid:nth-child(even) {
+    transform: translateY(18px) rotate(2deg);
+}
+
+.polaroid:nth-child(odd) {
+    transform: rotate(-2deg);
+}
+
+.polaroid:hover {
+    transform: translateY(-4px) rotate(0deg);
+}
+
+.polaroid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background: #efede8;
+}
+
+.polaroid figcaption {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    padding-top: 14px;
+}
+
+@media (max-width: 480px) {
+    .gallery h2 {
+        font-size: 30px;
+    }
+
+    .photo-grid {
+        gap: 18px 12px;
+    }
+
+    .polaroid {
+        padding: 6px 6px 13px;
+    }
+
+    .polaroid figcaption {
+        font-size: 11px;
+    }
+}
+
+/* Foto muncul perlahan */
+.polaroid {
+    opacity: 0;
+    animation: photoAppear 0.8s ease forwards;
+}
+
+.polaroid:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.polaroid:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.polaroid:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.polaroid:nth-child(4) {
+    animation-delay: 0.7s;
+}
+
+@keyframes photoAppear {
+    from {
+        opacity: 0;
+        translate: 0 25px;
+        scale: 0.95;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
+    }
+}
+
+/* Foto bergerak saat disentuh */
+.polaroid {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.polaroid:hover {
+    transform: translateY(-8px) rotate(0deg) scale(1.03);
+    box-shadow: 0 12px 25px #00000012;
+}
+
+/* Bintang dekorasi */
+.floating-star {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10;
+    color: #c5a9e8;
+    animation: floatStar 4s ease-in-out infinite;
+}
+
+.star-one {
+    top: 25%;
+    left: 8%;
+    font-size: 22px;
+}
+
+.star-two {
+    top: 60%;
+    right: 9%;
+    font-size: 28px;
+    animation-delay: 1s;
+    color: #e6bd71;
+}
+
+.star-three {
+    top: 80%;
+    left: 12%;
+    font-size: 16px;
+    animation-delay: 2s;
+}
+
+@keyframes floatStar {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translateY(-18px) rotate(25deg);
+        opacity: 1;
+    }
+}
+
+button {
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px #00000015;
+}
+
+button:active {
+    transform: scale(0.96);
+}
